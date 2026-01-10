@@ -1,0 +1,23 @@
+header {
+  width: 100%;
+
+  font-size: 2em;
+
+  border-bottom: 1px var(--highligh-color) solid;
+
+  min-height: var(--main-border-radius);
+}
+
+input {
+  border: none;
+  width: 100%;
+
+  background: none;
+
+  /* TODO: Highlight active by growing bottom border */
+  padding: .5em var(--main-border-radius) .25em var(--main-border-radius);
+}
+
+main {
+  padding: 1em 2em;
+}

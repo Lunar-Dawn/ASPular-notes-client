@@ -6,5 +6,9 @@
 
 :root {
   --border-color: black;
-  --highligh-color: white;
+  --highligh-color: purple;
+}
+
+input {
+  outline: none;
 }
