@@ -1,0 +1,42 @@
+.layout {
+  display: grid;
+
+  grid-template-columns: 1fr 3fr 1fr;
+  grid-template-rows: min-content 1fr;
+
+  background-image: url("/galaxy.webp");
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+
+  min-height: 100vh;
+}
+
+header {
+  grid-column: 1 / -1;
+
+  text-align: center;
+  font-size: 2.4em;
+
+  background: transparent;
+  backdrop-filter: blur(5px);
+
+  border-bottom: 1px var(--border-color) solid;
+}
+
+nav {
+  backdrop-filter: blur(5px);
+
+  border-right: 1px var(--border-color) solid;
+  margin-right: 5em;
+}
+
+.main-wrapper {
+  background: white;
+
+  margin: 5em 2em;
+
+  --main-border-radius: 2rem;
+  border-radius: var(--main-border-radius);
+}
+
