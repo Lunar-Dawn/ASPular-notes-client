@@ -1,6 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { Note } from '../note';
+import { NoteService } from '../notes.service';
 
 @Component({
   selector: 'app-note-list',
@@ -9,5 +10,10 @@ import { Note } from '../note';
   styleUrl: './note-list.css',
 })
 export class NoteList {
-  public readonly notes = input.required<Note[]>();
+  protected readonly notes: Note[] = [];
+  private readonly noteService = inject(NoteService);
+
+  constructor() {
+    this.notes = this.noteService.getAllNotes();
+  }
 }

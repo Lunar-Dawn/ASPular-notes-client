@@ -1,6 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component, inject } from '@angular/core';
 
 import { Note } from '../note';
+import { NoteService } from '../notes.service';
 
 @Component({
   selector: 'app-note-editor',
@@ -9,5 +10,10 @@ import { Note } from '../note';
   styleUrl: './note-editor.css',
 })
 export class NoteEditor {
-  readonly note_data = input.required<Note>();
+  protected readonly note: Note | undefined = undefined;
+  private readonly noteService = inject(NoteService);
+
+  constructor() {
+    this.note = this.noteService.getNote(0);
+  }
 }

@@ -1,5 +1,5 @@
 <nav>
-  @for (note of notes(); track $index) {
+  @for (note of notes; track note.id) {
     <article>
       <h4>{{ note.title }}</h4>
       <p>{{ note.content }}</p>
