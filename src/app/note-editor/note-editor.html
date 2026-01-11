@@ -8,6 +8,10 @@
   }
 </header>
 
+<div class="controls">
+  <button (click)="deleteNote()">Delete Note</button>
+</div>
+
 <main [attr.data-replicated-value]="note()?.content">
   @if (note() !== null) {
     <textarea (input)="queueUpdateNote($event)" [field]="noteForm.content"></textarea>

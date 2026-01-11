@@ -1,6 +1,6 @@
 import { HttpClient, httpResource, HttpResourceRef } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, shareReplay } from 'rxjs';
 
 import { Note } from './note';
 
@@ -25,7 +25,7 @@ export class NoteService {
     let req = this.http.post<Note>(`${this.url_base}/notes`, {
       title,
       content,
-    });
+    }).pipe(shareReplay({refCount: true, bufferSize: 1}));
 
     req.subscribe(_ => {
       // TODO: Replaying the GET here seems wasteful
@@ -37,9 +37,22 @@ export class NoteService {
 
   updateNote(note: Note) {
     const req = this.http.put<Note>(`${this.url_base}/notes/${note.id}`, note)
+      .pipe(shareReplay({refCount: true, bufferSize: 1}))
 
     req.subscribe(_ => {
       // TODO: Replaying the GET here seems wasteful as well
+      this.notes.reload()
+    });
+
+    return req;
+  }
+
+  deleteNote(note: Note) {
+    const req = this.http.delete(`${this.url_base}/notes/${note.id}`)
+      .pipe(shareReplay({refCount: true, bufferSize: 1}))
+
+    req.subscribe(_ => {
+      // TODO: Here as well
       this.notes.reload()
     });
 

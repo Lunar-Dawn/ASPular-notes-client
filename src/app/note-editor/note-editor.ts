@@ -1,6 +1,6 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { Field, form } from '@angular/forms/signals';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Note } from '../note';
 import { NoteService } from '../notes.service';
@@ -15,6 +15,7 @@ import { NoteService } from '../notes.service';
 })
 export class NoteEditor {
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
+  private readonly router: Router = inject(Router);
   private readonly noteService: NoteService = inject(NoteService);
 
   protected readonly note: WritableSignal<Note | null> = signal(null)
@@ -60,5 +61,11 @@ export class NoteEditor {
     const n = this.note();
     if (n !== null)
       this.noteService.updateNote(n);
+  }
+
+  deleteNote() {
+    const n = this.note();
+    if (n !== null)
+      this.noteService.deleteNote(n).subscribe(_ => this.router.navigate(['/']))
   }
 }
