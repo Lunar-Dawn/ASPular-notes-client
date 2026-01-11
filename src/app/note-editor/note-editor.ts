@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { Note } from '../note';
@@ -16,10 +16,13 @@ export class NoteEditor {
   private readonly noteService = inject(NoteService);
   private note_id: number = -1;
 
-  constructor() {
-    this.route.params.subscribe((params) => {
+  constructor(private ref: ChangeDetectorRef) {
+    this.route.params.subscribe(params => {
       this.note_id = Number(params['id']);
-      this.note = this.noteService.getNote(this.note_id);
+      this.noteService.getNote(this.note_id).subscribe((resp => {
+        this.note = resp;
+        this.ref.markForCheck();
+      }));
     })
   }
 }

@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 
 import { Note } from '../note';
@@ -13,10 +13,13 @@ import { NoteService } from '../notes.service';
   styleUrl: './note-list.css',
 })
 export class NoteList {
-  protected readonly notes: Note[] = [];
+  protected notes: Note[] = [];
   private readonly noteService = inject(NoteService);
 
-  constructor() {
-    this.notes = this.noteService.getAllNotes();
+  constructor(private ref: ChangeDetectorRef) {
+    this.noteService.getAllNotes().subscribe(resp => {
+      this.notes = resp;
+      this.ref.markForCheck();
+    });
   }
 }
