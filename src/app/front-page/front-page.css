@@ -1,0 +1,23 @@
+header {
+  /* TODO. unify the styling here to be more modular with the editor */
+  width: 100%;
+
+  font-size: 2em;
+
+  border-bottom: 1px var(--highligh-color) solid;
+
+  min-height: var(--main-border-radius);
+
+  padding: .5em var(--main-border-radius) .25em var(--main-border-radius);
+
+  text-align: center;
+}
+
+main {
+  display: grid;
+
+  padding: 2em;
+
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2ch;
+}

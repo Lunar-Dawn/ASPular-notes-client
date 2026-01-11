@@ -1,6 +1,9 @@
 <div class="layout">
   <header><a [routerLink]="['/']">ASPular Notes</a></header>
-  <app-note-list/>
+  <nav>
+    <!-- TODO: Hide when the front page is displayed? -->
+    <app-note-list style="display: contents"/>
+  </nav>
   <div class="main-wrapper">
     <router-outlet/>
   </div>

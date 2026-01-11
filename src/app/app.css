@@ -24,6 +24,23 @@ header {
   border-bottom: 1px var(--border-color) solid;
 }
 
+nav {
+  height: 100%;
+
+  backdrop-filter: blur(5px);
+
+  border-right: 1px var(--border-color) solid;
+  margin-right: 5em;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  padding: 1em;
+
+  /* TODO: Overflows */
+}
+
 .main-wrapper {
   background: white;
 
