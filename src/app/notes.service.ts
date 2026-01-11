@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, httpResource, HttpResourceRef } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -11,8 +11,10 @@ export class NoteService {
   private readonly url_base = "http://localhost:5288"
   private readonly http = inject(HttpClient);
 
-  getAllNotes(): Observable<Note[]> {
-    return this.http.get<Note[]>(`${this.url_base}/notes`);
+  private readonly notes: HttpResourceRef<Note[]> = httpResource<Note[]>(() => `${this.url_base}/notes`, {defaultValue: []});
+
+  getAllNotes(): HttpResourceRef<Note[]> {
+    return this.notes;
   }
 
   getNote(id: number): Observable<Note> {

@@ -1,7 +1,9 @@
-<header>
-  <input type="text" [value]="note?.title"/>
-</header>
+@if (note | async; as note) {
+  <header>
+    <input type="text" [value]="note.title"/>
+  </header>
 
-<main>
-  {{ note?.content }}
-</main>
+  <main>
+    {{ note.content }}
+  </main>
+}

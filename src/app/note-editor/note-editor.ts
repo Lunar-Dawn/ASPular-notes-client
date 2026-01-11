@@ -1,28 +1,30 @@
-import { ChangeDetectorRef, Component, inject } from '@angular/core';
+import { AsyncPipe } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { Note } from '../note';
 import { NoteService } from '../notes.service';
 
 @Component({
   selector: 'app-note-editor',
-  imports: [],
+  imports: [
+    AsyncPipe,
+  ],
   templateUrl: './note-editor.html',
   styleUrl: './note-editor.css',
 })
 export class NoteEditor {
-  protected note: Note | undefined = undefined;
-  private readonly route = inject(ActivatedRoute);
-  private readonly noteService = inject(NoteService);
+  // TODO: Make this nice and handle errors.
+  protected note: Observable<Note | undefined> | null = null;
+  private readonly route: ActivatedRoute = inject(ActivatedRoute);
+  private readonly noteService: NoteService = inject(NoteService);
   private note_id: number = -1;
 
-  constructor(private ref: ChangeDetectorRef) {
+  constructor() {
     this.route.params.subscribe(params => {
       this.note_id = Number(params['id']);
-      this.noteService.getNote(this.note_id).subscribe((resp => {
-        this.note = resp;
-        this.ref.markForCheck();
-      }));
+      this.note = this.noteService.getNote(this.note_id)
     })
   }
 }
