@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
-
-import { NoteEditor } from './note-editor/note-editor';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { NoteList } from './note-list/note-list';
 
 @Component({
   selector: 'app-root',
   imports: [
-    NoteEditor,
-    NoteList
+    NoteList,
+    RouterOutlet,
+    RouterLink
   ],
   templateUrl: './app.html',
   styleUrl: './app.css'

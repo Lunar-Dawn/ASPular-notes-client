@@ -1,7 +1,7 @@
 <div class="layout">
-  <header>ASPular Notes</header>
+  <header><a [routerLink]="['/']">ASPular Notes</a></header>
   <app-note-list/>
   <div class="main-wrapper">
-    <app-note-editor/>
+    <router-outlet/>
   </div>
 </div>

@@ -1,11 +1,14 @@
 import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 import { Note } from '../note';
 import { NoteService } from '../notes.service';
 
 @Component({
   selector: 'app-note-list',
-  imports: [],
+  imports: [
+    RouterLink
+  ],
   templateUrl: './note-list.html',
   styleUrl: './note-list.css',
 })

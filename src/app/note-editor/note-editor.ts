@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { Note } from '../note';
 import { NoteService } from '../notes.service';
@@ -10,10 +11,15 @@ import { NoteService } from '../notes.service';
   styleUrl: './note-editor.css',
 })
 export class NoteEditor {
-  protected readonly note: Note | undefined = undefined;
+  protected note: Note | undefined = undefined;
+  private readonly route = inject(ActivatedRoute);
   private readonly noteService = inject(NoteService);
+  private note_id: number = -1;
 
   constructor() {
-    this.note = this.noteService.getNote(0);
+    this.route.params.subscribe((params) => {
+      this.note_id = Number(params['id']);
+      this.note = this.noteService.getNote(this.note_id);
+    })
   }
 }

@@ -12,3 +12,13 @@
 input {
   outline: none;
 }
+
+a {
+  text-decoration: unset;
+
+  color: unset;
+}
+
+a:hover {
+  text-decoration: underline;
+}
