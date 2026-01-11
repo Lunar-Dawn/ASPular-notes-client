@@ -1,9 +1,18 @@
-@if (note | async; as note) {
-  <header>
-    <input type="text" [value]="note.title"/>
-  </header>
+<!-- TODO: Some indication of what is active -->
 
-  <main>
-    {{ note.content }}
-  </main>
-}
+<header>
+  @if (note() !== null) {
+    <input (input)="queueUpdateNote($event)" type="text" [field]="noteForm.title"/>
+  } @else {
+    <h1>Loading...</h1>
+  }
+</header>
+
+<main [attr.data-replicated-value]="note()?.content">
+  @if (note() !== null) {
+    <textarea (input)="queueUpdateNote($event)" [field]="noteForm.content"></textarea>
+  } @else {
+    Loading...
+  }
+</main>
+

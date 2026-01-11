@@ -34,4 +34,15 @@ export class NoteService {
 
     return req;
   }
+
+  updateNote(note: Note) {
+    const req = this.http.put<Note>(`${this.url_base}/notes/${note.id}`, note)
+
+    req.subscribe(_ => {
+      // TODO: Replaying the GET here seems wasteful as well
+      this.notes.reload()
+    });
+
+    return req;
+  }
 }

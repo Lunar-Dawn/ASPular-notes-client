@@ -1,7 +1,6 @@
-import { AsyncPipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
+import { Field, form } from '@angular/forms/signals';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
 
 import { Note } from '../note';
 import { NoteService } from '../notes.service';
@@ -9,22 +8,57 @@ import { NoteService } from '../notes.service';
 @Component({
   selector: 'app-note-editor',
   imports: [
-    AsyncPipe,
+    Field,
   ],
   templateUrl: './note-editor.html',
   styleUrl: './note-editor.css',
 })
 export class NoteEditor {
-  // TODO: Make this nice and handle errors.
-  protected note: Observable<Note | undefined> | null = null;
   private readonly route: ActivatedRoute = inject(ActivatedRoute);
   private readonly noteService: NoteService = inject(NoteService);
-  private note_id: number = -1;
+
+  protected readonly note: WritableSignal<Note | null> = signal(null)
+
+  protected readonly noteModel = signal({
+    title: '',
+    content: '',
+  })
+  protected readonly noteForm = form(this.noteModel);
 
   constructor() {
     this.route.params.subscribe(params => {
-      this.note_id = Number(params['id']);
-      this.note = this.noteService.getNote(this.note_id)
+      this.noteService.getNote(params['id']).subscribe(note => {
+        this.note.set(note)
+
+        this.noteForm.title().value.set(note.title)
+        this.noteForm.content().value.set(note.content)
+      })
     })
+  }
+
+  private timeoutId: number = 0;
+
+  queueUpdateNote(event: Event) {
+    event.preventDefault();
+
+    this.note.update(n => {
+      if (n !== null) {
+        n.title = this.noteForm.title().value()
+        n.content = this.noteForm.content().value()
+      }
+
+      return n
+    });
+
+    clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(() => {
+      this.updateNote()
+    }, 500)
+  }
+
+  updateNote() {
+    const n = this.note();
+    if (n !== null)
+      this.noteService.updateNote(n);
   }
 }

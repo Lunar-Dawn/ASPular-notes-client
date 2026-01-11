@@ -14,10 +14,42 @@ input {
 
   background: none;
 
+  text-align: center;
+
   /* TODO: Highlight active by growing bottom border */
   padding: .5em var(--main-border-radius) .25em var(--main-border-radius);
 }
 
 main {
-  padding: 1em 2em;
+  display: grid;
+}
+
+main::after {
+  content: attr(data-replicated-value) " ";
+
+  white-space: pre-wrap;
+
+  visibility: hidden;
+}
+
+textarea {
+  background: transparent;
+
+  resize: none;
+
+  overflow: hidden;
+
+  /* One day this will just work™ in Firefox */
+  field-sizing: content;
+}
+
+main > textarea,
+main::after {
+  border: none;
+
+  padding: 1em var(--main-border-radius);
+  outline: none;
+  font: inherit;
+
+  grid-area: 1 / 1 / 2 / 2;
 }
