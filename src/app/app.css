@@ -24,13 +24,6 @@ header {
   border-bottom: 1px var(--border-color) solid;
 }
 
-nav {
-  backdrop-filter: blur(5px);
-
-  border-right: 1px var(--border-color) solid;
-  margin-right: 5em;
-}
-
 .main-wrapper {
   background: white;
 

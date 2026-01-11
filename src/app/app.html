@@ -1,7 +1,7 @@
 <div class="layout">
   <header>ASPular Notes</header>
-  <nav>Nav</nav>
+  <app-note-list [notes]="notes()"></app-note-list>
   <div class="main-wrapper">
-    <app-note-editor [note_data]="current_note()"/>
+    <app-note-editor [note_data]="notes()[0]"/>
   </div>
 </div>
