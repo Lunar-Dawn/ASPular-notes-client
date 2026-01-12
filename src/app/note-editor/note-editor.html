@@ -2,19 +2,29 @@
 
 <header>
   @if (note() !== null) {
-    <input (input)="queueUpdateNote($event)" type="text" [field]="noteForm.title"/>
+    <input type="text" (input)="queueUpdateNote($event)" [(ngModel)]="note()!.title"/>
   } @else {
     <h1>Loading...</h1>
   }
 </header>
 
-<div class="controls">
-  <button (click)="deleteNote()">Delete Note</button>
-</div>
 
-<main [attr.data-replicated-value]="note()?.content">
+<main>
   @if (note() !== null) {
-    <textarea (input)="queueUpdateNote($event)" [field]="noteForm.content"></textarea>
+    <!-- TODO: This wraps *badly* -->
+    <div class="subheading">
+      <div class="tags-wrapper">
+        @for (tag of note()!.tags.sort(); track $index) {
+          <span class="tag">{{ tag }}
+            <button (click)="removeTag(tag)">x</button></span>
+        }
+        <input type="text" [(ngModel)]="textInput" (keyup.enter)="addTag($event)"/>
+      </div>
+      <button (click)="deleteNote()">Delete Note</button>
+    </div>
+    <div class="textarea-sizer" [attr.data-replicated-value]="note()?.content">
+      <textarea (input)="queueUpdateNote($event)" [(ngModel)]="note()!.content"></textarea>
+    </div>
   } @else {
     Loading...
   }

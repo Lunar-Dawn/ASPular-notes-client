@@ -21,10 +21,11 @@ export class NoteService {
     return this.http.get<Note>(`${this.url_base}/notes/${id}`);
   }
 
-  createNote(title: string = "New Note", content: string = ""): Observable<Note> {
+  createNote(title: string = "New Note", content: string = "", tags = []): Observable<Note> {
     let req = this.http.post<Note>(`${this.url_base}/notes`, {
       title,
       content,
+      tags,
     }).pipe(shareReplay({refCount: true, bufferSize: 1}));
 
     req.subscribe(_ => {

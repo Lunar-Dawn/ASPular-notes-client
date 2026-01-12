@@ -1,0 +1,80 @@
+header {
+  width: 100%;
+
+  font-size: 2em;
+
+  border-bottom: 1px var(--highligh-color) solid;
+
+  min-height: var(--main-border-radius);
+
+  input {
+    border: none;
+    width: 100%;
+
+    background: none;
+
+    text-align: center;
+
+    /* TODO: Highlight active by growing bottom border */
+    padding: .5em var(--main-border-radius) .25em var(--main-border-radius);
+  }
+}
+
+
+.subheading {
+  display: flex;
+
+  .tags-wrapper {
+    display: flex;
+
+    flex: 1;
+    align-items: baseline;
+
+    .tag {
+      border: 1px black solid;
+      padding: 0 .5ch;
+      margin: 0 2px;
+    }
+
+    input {
+      flex: 1;
+
+      &::before {
+        content: "asdf";
+      }
+    }
+  }
+}
+
+textarea {
+  background: transparent;
+
+  resize: none;
+
+  overflow: hidden;
+
+  /* One day this will just work™ in Firefox */
+  field-sizing: content;
+}
+
+.textarea-sizer {
+  display: grid;
+
+  &::after {
+    content: attr(data-replicated-value) " ";
+
+    white-space: pre-wrap;
+
+    visibility: hidden;
+  }
+
+  &::after, > textarea {
+    border: none;
+
+    padding: 1em var(--main-border-radius);
+    outline: none;
+    font: inherit;
+
+    grid-area: 1 / 1 / 2 / 2;
+  }
+}
