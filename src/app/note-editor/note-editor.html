@@ -1,6 +1,6 @@
 <!-- TODO: Some indication of what is active -->
 
-<header>
+<header class="header-color">
   @if (note() !== null) {
     <input type="text" (input)="queueUpdateNote($event)" [(ngModel)]="note()!.title"/>
   } @else {
@@ -8,25 +8,31 @@
   }
 </header>
 
-
-<main>
-  @if (note() !== null) {
+@if (note() !== null) {
+  <div class="toolbar">
     <!-- TODO: This wraps *badly* -->
-    <div class="subheading">
-      <div class="tags-wrapper">
-        @for (tag of note()!.tags.sort(); track $index) {
-          <span class="tag">{{ tag }}
-            <button (click)="removeTag(tag)">x</button></span>
-        }
-        <input type="text" [(ngModel)]="textInput" (keyup.enter)="addTag($event)"/>
-      </div>
-      <button (click)="deleteNote()">Delete Note</button>
+    <div class="tags-wrapper">
+      @for (tag of note()!.tags.sort(); track $index) {
+        <div class="tag">{{ tag }}
+          <button (click)="removeTag(tag)">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" fill="#e3e3e3">
+              <path
+                d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/>
+            </svg>
+          </button>
+        </div>
+      }
+      <input type="text" [(ngModel)]="textInput" (keyup.enter)="addTag($event)" placeholder="Add some tags!"/>
     </div>
+    <button (click)="deleteNote()">Delete Note</button>
+  </div>
+  <main>
     <div class="textarea-sizer" [attr.data-replicated-value]="note()?.content">
       <textarea (input)="queueUpdateNote($event)" [(ngModel)]="note()!.content"></textarea>
     </div>
-  } @else {
+  </main>
+} @else {
+  <main>
     Loading...
-  }
-</main>
-
+  </main>
+}

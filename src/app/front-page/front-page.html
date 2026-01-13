@@ -1,8 +1,11 @@
-<header>Your Notes</header>
+<header class="header-color">
+  <h1>Your Notes</h1>
+</header>
+
+<div class="toolbar">
+  <input [(ngModel)]="searchText">
+</div>
 
 <main>
-  <div class="subheading">
-    <input [(ngModel)]="searchText">
-  </div>
   <app-note-list [notes]="filteredNotes()" style="display: contents"/>
 </main>

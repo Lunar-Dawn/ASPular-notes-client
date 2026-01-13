@@ -23,15 +23,3 @@ header {
 
   border-bottom: 1px var(--border-color) solid;
 }
-
-.main-wrapper {
-  background: white;
-
-  margin: 5em 2em;
-
-  --main-border-radius: 2rem;
-  border-radius: var(--main-border-radius);
-
-  align-self: start;
-}
-

@@ -1,54 +1,4 @@
-header {
-  width: 100%;
-
-  font-size: 2em;
-
-  border-bottom: 1px var(--highligh-color) solid;
-
-  min-height: var(--main-border-radius);
-
-  input {
-    border: none;
-    width: 100%;
-
-    background: none;
-
-    text-align: center;
-
-    /* TODO: Highlight active by growing bottom border */
-    padding: .5em var(--main-border-radius) .25em var(--main-border-radius);
-  }
-}
-
-
-.subheading {
-  display: flex;
-
-  .tags-wrapper {
-    display: flex;
-
-    flex: 1;
-    align-items: baseline;
-
-    .tag {
-      border: 1px black solid;
-      padding: 0 .5ch;
-      margin: 0 2px;
-    }
-
-    input {
-      flex: 1;
-
-      &::before {
-        content: "asdf";
-      }
-    }
-  }
-}
-
 textarea {
-  background: transparent;
-
   resize: none;
 
   overflow: hidden;
@@ -71,10 +21,78 @@ textarea {
   &::after, > textarea {
     border: none;
 
-    padding: 1em var(--main-border-radius);
+    padding: 1em 2rem;
     outline: none;
     font: inherit;
 
     grid-area: 1 / 1 / 2 / 2;
+  }
+}
+
+$inactive-border-width: 1px;
+$active-border-add: 4px;
+
+.tags-wrapper {
+  display: flex;
+
+  flex: 1;
+  align-items: baseline;
+
+  border-bottom: $inactive-border-width solid var(--highligh-color);
+
+  .tag {
+    display: grid;
+    grid-template-columns: max-content min-content;
+
+    padding: 0 0 0 1ch;
+    margin: 0 2px;
+
+    border-radius: 100px;
+
+    background: var(--highligh-color);
+    color: var(--highlight-text-color);
+
+    button {
+      display: grid;
+      align-items: center;
+      justify-items: center;
+
+      border-radius: 100px;
+      aspect-ratio: 1;
+
+      height: 1lh;
+
+      padding: 0;
+
+      margin-left: 0.5ch;
+
+      svg {
+        height: 80%;
+      }
+    }
+
+    &:first-child {
+      margin-left: 1ch;
+    }
+  }
+
+
+  &:focus-within {
+    padding-bottom: 0;
+    border-bottom-width: ($inactive-border-width + $active-border-add);
+
+    input {
+      padding-top: $active-border-add;
+    }
+  }
+
+  input {
+    height: 100%;
+
+    padding: 0 2ch 0 1ch;
+
+    border: 0;
+
+    flex: 1;
   }
 }

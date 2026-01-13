@@ -1,24 +1,112 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
-* {
+:root {
   font-family: "Inter", "sans-serif";
 }
 
 :root {
   --border-color: black;
-  --highligh-color: purple;
+
+  --highlight-text-color: white;
+  --highligh-color: mediumpurple;
+
+  --text-color: black;
+  --text-color-inactive: #444;
+
+  --header-bg: purple;
+  --header-text: white;
+  --header-text-inactive: #ccc;
+
+  --border-radius-size: 10px;
+}
+
+.header-color {
+  color: var(--header-text);
+  background-color: var(--header-bg);
+}
+
+.main-wrapper {
+  background: white;
+
+  margin: 5em 2em;
+
+  border-radius: var(--border-radius-size);
+  overflow: hidden;
+
+  align-self: start;
+
+  header {
+    width: 100%;
+
+
+    h1, input {
+      padding: .25rem 1rem;
+
+      font-weight: normal;
+      font-size: 2.4em;
+
+      text-align: center;
+    }
+
+    input {
+      border: none;
+      background: none;
+
+      color: var(--header-text-inactive);
+
+      width: 100%;
+
+      &:focus {
+        color: var(--header-text);
+      }
+    }
+  }
+
+  .toolbar {
+    display: flex;
+
+    height: 2.4em;
+
+    background: #eee;
+
+    &:focus-within {
+      background: #ddd;
+    }
+
+    button {
+      background: #eee;
+
+      &:hover, &:focus {
+        background: #ddd;
+      }
+    }
+
+    button {
+      border: 0;
+
+      padding: 0 1ch;
+
+      color: var(--highlight-text-color);
+      background: var(--highligh-color);
+
+      &:hover, &:active {
+        background: var(--header-bg);
+      }
+    }
+  }
 }
 
 input {
   outline: none;
+  background: none;
 }
 
 a {
   text-decoration: unset;
 
   color: unset;
-}
 
-a:hover {
-  text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
+  }
 }
