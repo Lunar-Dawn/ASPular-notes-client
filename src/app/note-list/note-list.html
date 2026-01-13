@@ -1,8 +1,6 @@
-@if (notes.hasValue()) {
-  @for (note of notes.value(); track note.id) {
-    <article [routerLink]="[`/note/${note.id}`]">
-      <h4>{{ note.title }}</h4>
-      <p>{{ note.content }}</p>
-    </article>
-  }
+@for (note of notes(); track note.id) {
+  <article [routerLink]="[`/note/${note.id}`]">
+    <h4>{{ note.title }}</h4>
+    <p>{{ note.content }}</p>
+  </article>
 }

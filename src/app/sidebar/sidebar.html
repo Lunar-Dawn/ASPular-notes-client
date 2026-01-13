@@ -1,5 +1,5 @@
 <nav>
   <button (click)="newNote()">+</button>
   <!-- TODO: Hide when the front page is displayed? -->
-  <app-note-list style="display: contents"/>
+  <app-note-list [notes]="this.notes.value()" style="display: contents"/>
 </nav>

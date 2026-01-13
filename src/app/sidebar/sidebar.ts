@@ -13,6 +13,7 @@ import { NoteService } from '../notes.service';
 })
 export class Sidebar {
   private readonly noteService = inject(NoteService);
+  public readonly notes = this.noteService.getAllNotes();
 
   protected newNote() {
     this.noteService.createNote()
