@@ -1,5 +1,8 @@
 <header>Your Notes</header>
 
 <main>
-  <app-note-list [notes]="this.notes.value()" style="display: contents"/>
+  <div class="subheading">
+    <input [(ngModel)]="searchText">
+  </div>
+  <app-note-list [notes]="filteredNotes()" style="display: contents"/>
 </main>
