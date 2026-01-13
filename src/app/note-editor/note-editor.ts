@@ -47,12 +47,18 @@ export class NoteEditor {
 
   addTag(event: Event) {
     event.preventDefault();
-    this.note.update(n => {
-      n?.tags.push(this.textInput())
-      this.textInput.set("")
-      return n
-    })
-    this.updateNote()
+
+    if (this.textInput() !== "") {
+      this.note.update(n => {
+        let tags = n!.tags
+        tags.push(this.textInput())
+        n!.tags = [...new Set(tags)]
+
+        this.textInput.set("")
+        return n
+      })
+      this.updateNote()
+    }
   }
 
   removeTag(tag: string) {
