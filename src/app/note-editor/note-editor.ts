@@ -1,6 +1,5 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { form } from '@angular/forms/signals';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Note } from '../note';
@@ -20,12 +19,6 @@ export class NoteEditor {
   private readonly noteService: NoteService = inject(NoteService);
 
   protected readonly note: WritableSignal<Note | null> = signal(null)
-
-  protected readonly noteModel = signal({
-    title: '',
-    content: '',
-  })
-  protected readonly noteForm = form(this.noteModel);
 
   constructor() {
     this.route.params.subscribe(params => {
