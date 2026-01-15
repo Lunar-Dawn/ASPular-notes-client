@@ -39,7 +39,7 @@ textarea {
 
     border-radius: 100px;
 
-    background: var(--highligh-color);
+    background: var(--highlight-color);
     color: var(--highlight-text-color);
 
     button {
@@ -60,7 +60,7 @@ textarea {
         height: 80%;
       }
 
-      background: var(--highligh-color);
+      background: var(--highlight-color);
 
       &:hover, &:focus, &:active {
         background: var(--header-bg);

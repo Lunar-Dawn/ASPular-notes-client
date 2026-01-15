@@ -7,7 +7,7 @@ article {
   max-height: 8em;
   overflow-y: hidden;
 
-  border: 1px var(--highligh-color) solid;
+  border: 1px var(--highlight-color) solid;
 
   cursor: pointer;
 }
