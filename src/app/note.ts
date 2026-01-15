@@ -20,8 +20,6 @@ export class NoteFilterer {
   }
 
   matches(note: Note): boolean {
-    console.log(this, note)
-
     if (!this.tags.every(tag => note.tags.includes(tag))) {
       return false
     }
