@@ -69,29 +69,50 @@
 
     background: #eee;
 
+    border-bottom: 1px solid var(--highligh-color);
+
+    input {
+      height: 100%;
+
+      padding: 0 2ch 0 1ch;
+
+      border: 0;
+
+      flex: 1;
+    }
+
     &:focus-within {
       background: #ddd;
     }
 
     button {
-      background: #eee;
+      background: #ddd;
 
-      &:hover, &:focus {
-        background: #ddd;
-      }
-    }
-
-    button {
       border: 0;
 
       padding: 0 1ch;
 
-      color: var(--highlight-text-color);
-      background: var(--highligh-color);
-
-      &:hover, &:active {
-        background: var(--header-bg);
+      &:hover, &:focus, &:active {
+        background: var(--highligh-color);
+        color: white;
       }
+    }
+  }
+}
+
+.input-bottom-border-wrapper {
+  display: flex;
+
+  flex: 1;
+  align-items: baseline;
+
+  $border-width: 3px;
+
+  &:focus-within {
+    border-bottom: $border-width solid var(--highligh-color);
+
+    input {
+      padding-top: $border-width;
     }
   }
 }

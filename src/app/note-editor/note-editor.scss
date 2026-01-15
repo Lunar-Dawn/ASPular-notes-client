@@ -29,17 +29,7 @@ textarea {
   }
 }
 
-$inactive-border-width: 1px;
-$active-border-add: 4px;
-
 .tags-wrapper {
-  display: flex;
-
-  flex: 1;
-  align-items: baseline;
-
-  border-bottom: $inactive-border-width solid var(--highligh-color);
-
   .tag {
     display: grid;
     grid-template-columns: max-content min-content;
@@ -69,30 +59,17 @@ $active-border-add: 4px;
       svg {
         height: 80%;
       }
+
+      background: var(--highligh-color);
+
+      &:hover, &:focus, &:active {
+        background: var(--header-bg);
+        color: var(--header-text);
+      }
     }
 
     &:first-child {
       margin-left: 1ch;
     }
-  }
-
-
-  &:focus-within {
-    padding-bottom: 0;
-    border-bottom-width: ($inactive-border-width + $active-border-add);
-
-    input {
-      padding-top: $active-border-add;
-    }
-  }
-
-  input {
-    height: 100%;
-
-    padding: 0 2ch 0 1ch;
-
-    border: 0;
-
-    flex: 1;
   }
 }

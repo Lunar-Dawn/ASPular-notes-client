@@ -11,7 +11,7 @@
 @if (note() !== null) {
   <div class="toolbar">
     <!-- TODO: This wraps *badly* -->
-    <div class="tags-wrapper">
+    <div class="tags-wrapper input-bottom-border-wrapper">
       @for (tag of note()!.tags.sort(); track $index) {
         <div class="tag">{{ tag }}
           <button (click)="removeTag(tag)">
