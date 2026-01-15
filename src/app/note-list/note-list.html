@@ -1,6 +1,8 @@
 @for (note of notes(); track note.id) {
   <article [routerLink]="[`/note/${note.id}`]">
-    <h4>{{ note.title }}</h4>
-    <p>{{ note.content }}</p>
+    <header class="header-color">{{ note.title }}</header>
+    <div>
+      <p>{{ note.content }}</p>
+    </div>
   </article>
 }

@@ -1,17 +1,32 @@
 article {
   background: white;
 
-  padding: .5em;
-  border-radius: 1em;
+  border-radius: var(--border-radius-size);
 
-  max-height: 8em;
-  overflow-y: hidden;
+  overflow: hidden;
 
-  border: 1px var(--highlight-color) solid;
+  border: 1px var(--header-bg) solid;
 
   cursor: pointer;
 }
 
-h4 {
+header {
+  padding: .5em;
+  font-weight: bold;
+
   text-align: center;
+}
+
+div {
+  padding: .5em;
+}
+
+p {
+  max-height: 4lh;
+
+  mask-image: linear-gradient(black 3lh, transparent);
+
+  overflow-wrap: break-word;
+
+  overflow: hidden;
 }
