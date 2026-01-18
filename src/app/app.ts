@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { RouterOutlet } from '@angular/router';
 
 import { Sidebar } from './sidebar/sidebar';
 
@@ -7,7 +7,6 @@ import { Sidebar } from './sidebar/sidebar';
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    RouterLink,
     Sidebar,
   ],
   templateUrl: './app.html',

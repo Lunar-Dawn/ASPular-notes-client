@@ -2,7 +2,6 @@
   display: grid;
 
   grid-template-columns: 20% 60% 20%;
-  grid-template-rows: min-content 1fr;
 
   background-image: url("/galaxy.webp");
   background-size: cover;
