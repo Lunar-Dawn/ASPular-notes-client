@@ -1,4 +1,5 @@
 import { Component, inject } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { NoteList } from '../note-list/note-list';
 import { NoteService } from '../notes.service';
@@ -15,7 +16,9 @@ export class Sidebar {
   private readonly noteService = inject(NoteService);
   public readonly notes = this.noteService.getAllNotes();
 
+  private readonly router = inject(Router);
+
   protected newNote() {
-    this.noteService.createNote()
+    this.noteService.createNote().subscribe(note => this.router.navigate(["/note", note.id]))
   }
 }
