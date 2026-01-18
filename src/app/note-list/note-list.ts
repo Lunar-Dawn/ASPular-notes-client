@@ -9,7 +9,7 @@ import { Note } from '../note';
     RouterLink,
   ],
   templateUrl: './note-list.html',
-  styleUrl: './note-list.css',
+  styleUrl: './note-list.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NoteList {

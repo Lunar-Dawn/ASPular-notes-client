@@ -8,6 +8,12 @@ article {
   border: 1px var(--header-bg) solid;
 
   cursor: pointer;
+
+  &:hover {
+    header {
+      text-decoration: underline;
+    }
+  }
 }
 
 header {
