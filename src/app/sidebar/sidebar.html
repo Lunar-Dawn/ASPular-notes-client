@@ -1,5 +1,10 @@
 <nav>
-  <button (click)="newNote()">+</button>
+  <button (click)="newNote()" class="header-color">
+    New Note
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" height="1lh" fill="#e3e3e3">
+      <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"/>
+    </svg>
+  </button>
   <!-- TODO: Hide when the front page is displayed? -->
   <app-note-list [notes]="this.notes.value()" style="display: contents"/>
 </nav>
